@@ -1,0 +1,3 @@
+{
+  "S3OutputPath": "s3://yolo-training-data-karan/yolo_training_output/"
+}

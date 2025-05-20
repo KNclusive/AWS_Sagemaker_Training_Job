@@ -1,0 +1,4 @@
+{
+  "CONFIGURATION_FILE_NAME": "training_configuration.yaml",
+  "YOLO_CONFIG_DIR": "/opt/ml/code"
+}

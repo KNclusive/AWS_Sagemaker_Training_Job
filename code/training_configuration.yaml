@@ -1,0 +1,16 @@
+mode: train
+data: /opt/ml/input/data/train/configuration_folder/data.yaml
+model: yolo11m.pt
+project: /opt/ml/model
+name: AWS_autoTrain_test1
+exist_ok: True
+epochs: 100
+hsv_h: 0.03
+hsv_s: 0.6
+hsv_v: 0.5
+translate: 0.5
+scale: 0.5
+shear: 10.0
+perspective: 0.001
+flipud: 0.2
+fliplr: 0.2

@@ -1,0 +1,14 @@
+[
+  {
+    "ChannelName": "train",
+    "DataSource": {
+      "S3DataSource": {
+        "S3DataType": "S3Prefix",
+        "S3Uri": "s3://yolo-training-data-karan/yolo_training_data/",
+        "S3DataDistributionType": "FullyReplicated"
+      }
+    },
+    "ContentType": "yaml",
+    "CompressionType": "None"
+  }
+]
