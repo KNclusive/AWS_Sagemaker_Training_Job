@@ -1,5 +1,5 @@
 {
-  "InstanceType": "ml.m5.4xlarge",
+  "InstanceType": "g4dn.xlarge",
   "InstanceCount": 1,
   "VolumeSizeInGB": 8
 }
