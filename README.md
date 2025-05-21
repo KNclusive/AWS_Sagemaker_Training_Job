@@ -64,27 +64,25 @@ SageMaker expects custom containers to follow a specific directory structure for
 
  ## Step-by-Step Workflow
 
- ### Upload Data to S3
+ ### 1. Upload Data to S3
  Upload your annotated dataset and configuration files to an S3 bucket using AWS CLI:
 ```
 aws s3 cp ./local_data_path s3://<your-bucket>/<your-folder-inside-bucket>/ --recursive
 ```
 
-### Prepare Training Scripts
+### 2. Prepare Training Scripts
 - Use Ultralytics YOLO Python API to write your training script (`train.py`).
 - Configure `data.yaml` to specify dataset paths.
 - Configure `training_configuration.yaml` to specify training parameters and paths, ensuring:
 - `project` path is set to `/opt/ml/model` (SageMaker’s model output directory).
 
-### Dockerize the Training Environment
+### 3. Dockerize the Training Environment
 - Create a `Dockerfile` with `WORKDIR /opt/ml/code` as per SageMaker standards.
 - Install dependencies from `requirements.txt`.
 - Copy your training scripts into the container.
 - Ensure your training script (`train.py`) is executable and set as the Docker `ENTRYPOINT`.
 
-
-
-### Create ECR Repository
+### 4. Create ECR Repository
 Create an ECR repository to host your Docker image:
 ```
 example:
@@ -95,8 +93,7 @@ To create an Public repository on AWS (Which is supported with upto 50GB cost-fr
 aws ecr-public create-repository --repository-name yolo-training-images --region us-east-1
 ```
 
-
-### Build and Push Docker Image
+### 5. Build and Push Docker Image
 Build the Docker image for Linux AMD64 platform (important for SageMaker compatibility):
 ```
 example:
@@ -117,14 +114,14 @@ aws ecr get-login-password --region us-east-1 | docker login --username AWS --pa
 docker push <your-aws-account-id>.dkr.ecr.us-east-1.amazonaws.com/yolo-training-images:latest
 ```
 
-### Configure IAM Role
+### 6. Configure IAM Role
 Create a SageMaker execution role with the following policies:
 - `AmazonS3FullAccess`
 - `AmazonSageMakerFullAccess`
   
 Note the role ARN for use in training job creation.
 
-### Prepare SageMaker Training Job JSON Config Files
+### 7. Prepare SageMaker Training Job JSON Config Files
 Create JSON files for:
 - `input-data-config.json`
 - `output-data-config.json`
@@ -134,7 +131,7 @@ Create JSON files for:
   
 These files define the input data channels, output locations, compute resources, environment variables, and job stopping criteria.
 
-### Launch SageMaker Training Job
+### 8. Launch SageMaker Training Job
 Use AWS CLI to create the training job:
 ```
 aws sagemaker create-training-job \
