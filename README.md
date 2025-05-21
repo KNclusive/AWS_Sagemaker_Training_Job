@@ -88,6 +88,10 @@ Create an ECR repository to host your Docker image:
 example:
 aws ecr create-repository --repository-name yolo-training-images --region us-east-1
 ```
+To create an Public repository on AWS (Which is supported with upto 50GB cost-free on AWS free-tier
+```
+aws ecr-public create-repository --repository-name yolo-training-images --region us-east-1
+```
 
 ### Build and Push Docker Image
 Build the Docker image for Linux AMD64 platform (important for SageMaker compatibility):
