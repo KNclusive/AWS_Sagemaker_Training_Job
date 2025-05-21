@@ -82,6 +82,8 @@ aws s3 cp ./local_data_path s3://<your-bucket>/<your-folder-inside-bucket>/ --re
 - Copy your training scripts into the container.
 - Ensure your training script (`train.py`) is executable and set as the Docker `ENTRYPOINT`.
 
+
+
 ### Create ECR Repository
 Create an ECR repository to host your Docker image:
 ```
@@ -92,6 +94,7 @@ To create an Public repository on AWS (Which is supported with upto 50GB cost-fr
 ```
 aws ecr-public create-repository --repository-name yolo-training-images --region us-east-1
 ```
+
 
 ### Build and Push Docker Image
 Build the Docker image for Linux AMD64 platform (important for SageMaker compatibility):
